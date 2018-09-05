@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
     [SerializeField] private Item[] _Invent;
     [SerializeField] private Canvas _Canvas;
+    [SerializeField] private GameObject[] Images;
 	// Use this for initialization
 	void Start () {
         _Invent = new Item[5];
+        
 	}
 	
 	// Update is called once per frame
@@ -31,9 +34,11 @@ public class Inventory : MonoBehaviour {
         {
             if (_Invent[j] != null)
             {
-                Sprite spr = Instantiate(_Invent[j].Sprite(), _Canvas.transform);
+                Images[j].SetActive(true);
+                Images[j].GetComponent<Image>().sprite = _Invent[j].Sprite();
             }
-            break;
+            else { break; }
+           
 
         }
     }
